@@ -19,9 +19,7 @@
                     <select id="id_documento" class="options" v-model="persona.id_doc" required="true">
                         <option value="" hidden="true">Seleccione documento</option>
                         <option value="1">Cédula de ciudadanía</option>
-                        <option value="2">Tarjeta de identidad</option>
                         <option value="3">Cédula de extranjería</option>
-                        <option value="4">Número de pasaporte</option>
                     </select>
                     <label for="num_documento">Número Documento:</label>
                     <input type="text" maxlength="100" id="num_documento" v-model="persona.numdoc_per" required="true">

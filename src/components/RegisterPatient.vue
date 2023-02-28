@@ -45,11 +45,11 @@
                     <label for="dir_paciente">Dirección:</label>
                     <input type="text" maxlength="200" id="dir_paciente" v-model="persona.paciente.dir_pac" required="true">
                     <label for="departamentos">Departamento:</label>
-                    <select name="departamentos" id="departamentos" class="options" required="true" v-on:change="seeCities">
+                    <select name="departamentos" id="departamentos" class="options" v-on:change="seeCities" required="true">
                         <option value="" hidden="true">Seleccione departamento</option>
                     </select>
                     <label for="ciudades">Ciudad:</label>
-                    <select name="ciudades" id="ciudades" class="options" required="true">
+                    <select name="ciudades" id="ciudades" class="options" v-model="persona.paciente.id_ciudad" required="true">
                         <option value="" hidden="true">Seleccione ciudad</option>
                     </select>
                     <label for="long_paciente">Longitud:</label>
