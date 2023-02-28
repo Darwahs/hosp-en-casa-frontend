@@ -16,7 +16,7 @@
                     <label for="telefono">Teléfono:</label>
                     <input type="number" id="telefono" v-model="persona.telefono" required="true">
                     <label for="id_documento">Documento:</label>
-                    <select id="id_documento" class="documents" v-model="persona.id_doc" required="true">
+                    <select id="id_documento" class="options" v-model="persona.id_doc" required="true">
                         <option value="" hidden="true">Seleccione documento</option>
                         <option value="1">Cédula de ciudadanía</option>
                         <option value="2">Tarjeta de identidad</option>
@@ -44,8 +44,14 @@
                     <input type="number" id="id_profSalud" v-model="persona.paciente.id_pro" required="true">
                     <label for="dir_paciente">Dirección:</label>
                     <input type="text" maxlength="200" id="dir_paciente" v-model="persona.paciente.dir_pac" required="true">
-                    <label for="id_ciudad">id_ciudad:</label>
-                    <input type="number" id="id_ciudad" v-model="persona.paciente.id_ciudad" required="true">
+                    <label for="departamentos">Departamento:</label>
+                    <select name="departamentos" id="departamentos" class="options" required="true" v-on:change="seeCities">
+                        <option value="" hidden="true">Seleccione departamento</option>
+                    </select>
+                    <label for="ciudades">Ciudad:</label>
+                    <select name="ciudades" id="ciudades" class="options" required="true">
+                        <option value="" hidden="true">Seleccione ciudad</option>
+                    </select>
                     <label for="long_paciente">Longitud:</label>
                     <input type="text" maxlength="40" id="long_paciente" v-model="persona.paciente.lon_pac">
                     <label for="lat_paciente">Latitud:</label>
@@ -105,11 +111,89 @@
                         lat_pac: "",
                     }
                 },
+                departments: [],
+                cities: [],
             }
         },
 
         methods:
         {
+            getData: async function()
+            {
+                this.getDepartments();
+            },
+
+            getDepartments: async function()
+            {
+                axios.get('https://hosp-en-casa.onrender.com/Departamento/')
+                .then((response)=>
+                {
+                    let array_deps = [];
+                    array_deps.push(response.data.Departamentos);
+                    for(let x=0; x<array_deps.length; x++)
+                    {
+                        for(let y=0; y<array_deps[x].length; y++)
+                        {
+                            this.departments.push(array_deps[x][y]);
+                        }
+                    }
+                    this.seeDepartments();
+                    this.getCities();
+                })
+                .catch((error)=>{if(error.response.status == '404')alert('ERROR 404: Departamentos No Encontrados')})
+            },
+
+            seeDepartments()
+            {
+                const opts_deps = document.querySelector('#departamentos');
+                for(let x=0; x<this.departments.length; x++)
+                {
+                    const opts = document.createElement('option');
+                    opts.textContent = this.departments[x].nom_dep;
+                    opts.value = x+1;
+                    opts_deps.appendChild(opts);
+                }
+            },
+
+            getCities()
+            {
+                axios.get('https://hosp-en-casa.onrender.com/Ciudad/')
+                .then((response)=>
+                {
+                    let array_cities = [];
+                    array_cities.push(response.data.Ciudades);
+                    for(let unique_location of array_cities)
+                    {
+                        for(let city of unique_location) this.cities.push(city);
+                    }
+                })
+                .catch(error => {if(error.response.status == '404') alert('ERROR 404: Ciudades No Encontradas')})
+            },
+
+            seeCities()
+            {
+                const opts_deps = document.querySelector('#departamentos');
+                const dep_selected = opts_deps.options[opts_deps.selectedIndex].value;
+                const opts_cities = document.querySelector('#ciudades');
+
+                for(let x=opts_cities.options.length-1; x>0; x--)
+                {
+                    opts_cities.remove(x);
+                }
+
+                for(let x=0; x<this.cities.length; x++)
+                {
+                    if(dep_selected == this.cities[x].id_dep)
+                    {
+                        const opt_city = document.createElement('option');
+                        opt_city.className = 'opt-city';
+                        opt_city.textContent = this.cities[x].nom_ciudad;
+                        opt_city.value = this.cities[x].id_ciudad;
+                        opts_cities.appendChild(opt_city);
+                    }
+                }
+            },
+
             clear_fields: function()
             {
                 this.persona.nom_per = ""
@@ -174,6 +258,11 @@
                         this.messageDocumentRepeated()
                 });
             },
+        },
+
+        created()
+        {
+            this.getData();
         }
     }
 </script>

@@ -146,7 +146,6 @@
                             <td v-if="!answer"></td>
                             <td v-if="answer">{{patient.dir_pac}}</td>
                         </tr>
-                        <!------------------------------------------------------------------------>
                         <tr>
                             <td class="style_text width-dinamic">Departamento</td>
                             <td v-if="!answer"></td>
@@ -157,7 +156,6 @@
                             <td v-if="!answer"></td>
                             <td v-if="answer">{{patient.id_ciudad.nom_ciudad}}</td>
                         </tr>
-                        <!------------------------------------------------------------------------>
                         <tr>
                             <td class="style_text width-dinamic">Longitud</td>
                             <td v-if="!answer"></td>

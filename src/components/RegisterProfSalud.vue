@@ -16,7 +16,7 @@
                     <label for="telefono">Teléfono:</label>
                     <input type="number" id="telefono" v-model="persona.telefono" required="true">
                     <label for="id_documento">Documento:</label>
-                    <select id="id_documento" class="documents" v-model="persona.id_doc" required="true">
+                    <select id="id_documento" class="options" v-model="persona.id_doc" required="true">
                         <option value="" hidden="true">Seleccione documento</option>
                         <option value="1">Cédula de ciudadanía</option>
                         <option value="2">Tarjeta de identidad</option>
@@ -34,8 +34,12 @@
 
                 <fieldset class="second_information">
                     <legend class="second_information-legend">Datos Profesional Salud</legend>
-                    <label for="id_especialidad" id="element-one_two">Id Especialidad:</label>
-                    <input type="number" min="1" max="2" id="id_especialidad" v-model="persona.prof_salud.id_esp" required="true">
+                    <label for="especialidad" id="element-one_two">Especialidad:</label>
+                    <select name="specialty" id="especialidad" class="options" v-model="persona.prof_salud.id_esp" required="true">
+                        <option value="" hidden="true">Seleccione especialidad</option>
+                        <option value="1">Médico(a)</option>
+                        <option value="2">Enfermero(a)</option>
+                    </select>
                     <label for="tarj_prof">Tarjeta Profesional:</label>
                     <input type="text" maxlength="50" id="tarj_prof" v-model="persona.prof_salud.tarj_pro" required="true">
                 </fieldset>
@@ -166,13 +170,13 @@
         border-radius: 6px;
     }
 
-    .information input, .documents
+    .information input, .options
     {
         padding: 3px;
         border-radius: 3px;
     }
 
-    .documents
+    .options
     {
         border: 2.5px inset gray;
         font-size: 14px;
