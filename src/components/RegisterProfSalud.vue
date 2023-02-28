@@ -15,8 +15,8 @@
                     <input type="text" maxlength="100" id="segundoApe" v-model="persona.segundoApe_per" required="true">
                     <label for="telefono">Teléfono:</label>
                     <input type="number" id="telefono" v-model="persona.telefono" required="true">
-                    <label for="id_documento">Id Documento:</label>
-                    <select id="id_document">
+                    <label for="id_documento">Documento:</label>
+                    <select id="id_documento" class="documents">
                         <option value="1">Cédula de ciudadanía</option>
                         <option value="2">Tarjeta de identidad</option>
                         <option value="3">Cédula de extranjería</option>
@@ -165,10 +165,16 @@
         border-radius: 6px;
     }
 
-    .information input
+    .information input, .documents
     {
         padding: 3px;
         border-radius: 3px;
+    }
+
+    .documents
+    {
+        border: 2.5px inset gray;
+        font-size: 14px;
     }
 
     .first_information, .second_information
