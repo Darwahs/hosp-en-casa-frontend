@@ -51,7 +51,6 @@
                     <label for="lat_paciente">Latitud:</label>
                     <input type="text" maxlength="40" id="lat_paciente" v-model="persona.paciente.lat_pac">
                 </fieldset>
-                <button v-on:click="seeDocument">Ver Valor</button>
                 <button type="submit" class="register-button"><span id="text_button">Registrar</span></button>
             </form>
         </div>
@@ -175,15 +174,6 @@
                         this.messageDocumentRepeated()
                 });
             },
-
-            seeDocument()
-            {
-                const documentType = document.querySelector('#id_documento');
-                let selected = documentType.options[documentType.selectedIndex].value;
-
-                console.log(typeof selected);
-                console.log('Option: '+selected);
-            }
         }
     }
 </script>
