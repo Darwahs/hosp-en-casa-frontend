@@ -16,7 +16,12 @@
                     <label for="telefono">Teléfono:</label>
                     <input type="number" id="telefono" v-model="persona.telefono" required="true">
                     <label for="id_documento">Id Documento:</label>
-                    <input type="number" min="1" max="4" id="id_documento" v-model="persona.id_doc" required="true">
+                    <select id="id_document">
+                        <option value="1">Cédula de ciudadanía</option>
+                        <option value="2">Tarjeta de identidad</option>
+                        <option value="3">Cédula de extranjería</option>
+                        <option value="4">Número de pasaporte</option>
+                    </select>
                     <label for="num_documento">Número Documento:</label>
                     <input type="text" maxlength="100" id="num_documento" v-model="persona.numdoc_per" required="true">
                     <label for="genero">Género:</label>
