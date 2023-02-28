@@ -196,21 +196,22 @@
 
             clear_fields: function()
             {
-                this.persona.nom_per = ""
-                this.persona.primerApe_per = ""
-                this.persona.segundoApe_per = ""
-                this.persona.telefono = ""
-                this.persona.id_doc = ""
-                this.persona.numdoc_per = ""
-                this.persona.gen_per = ""
-                this.persona.paciente.fech_nac = ""
-                this.persona.paciente.rh_pac = ""
-                this.persona.paciente.id_fam = ""
-                this.persona.paciente.id_pro = ""
-                this.persona.paciente.dir_pac = ""
-                this.persona.paciente.id_ciudad = ""
-                this.persona.paciente.lon_pac = ""
-                this.persona.paciente.lat_pac = ""
+                this.persona.nom_per = "";
+                this.persona.primerApe_per = "";
+                this.persona.segundoApe_per = "";
+                this.persona.telefono = "";
+                this.persona.id_doc = "";
+                this.persona.numdoc_per = "";
+                this.persona.gen_per = "";
+                this.persona.paciente.fech_nac = "";
+                this.persona.paciente.rh_pac = "";
+                this.persona.paciente.id_fam = "";
+                this.persona.paciente.id_pro = "";
+                this.persona.paciente.dir_pac = "";
+                document.querySelector('#departamentos').value="";
+                this.persona.paciente.id_ciudad = "";
+                this.persona.paciente.lon_pac = "";
+                this.persona.paciente.lat_pac = "";
             },
 
             registerSuccessfulPatient: function()
